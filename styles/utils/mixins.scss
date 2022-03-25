@@ -1,0 +1,174 @@
+@use "sass:string";
+
+//Center element
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+//Flex element with space-between
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+//Flex element with space-arround
+@mixin flex-around {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+//Flex element with space-evenly
+@mixin flex-evenly {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+//Reset default list style
+@mixin reset-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+//Hide element
+@mixin hidden {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+}
+
+//Show element
+@mixin show {
+  display: initial;
+  visibility: visible;
+  opacity: 1;
+}
+
+%cover {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+%absolute-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+%hc__wrapper {
+  @extend %container;
+  padding: rem(24);
+  border-radius: 4px;
+  position: relative;
+  box-shadow: 0px 10px 24px rgba($color: #000000, $alpha: 0.05 );
+  z-index: 11;
+  background-color: #ffff;
+}
+
+%translate {
+  transform: translateY(-15%);
+
+  @include up(935) {
+    transform: translateY(-50%);
+  }
+}
+
+%grid {
+  display: grid;
+}
+
+%avatar {
+  height: 48px;
+  width: 48px;
+  //background-color: $gray-200;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+%reset-button {
+  outline: none;
+  display: inline-block;
+  border: 1px solid transparent;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+//Hide element on specific device
+//hide on mobile
+@mixin hideElement($name) {
+  @if $name== "hide-on-mb" {
+    .#{$name} {
+      display: none !important;
+    }
+  }
+
+  @if $name== "hide-on-tb" {
+    @include up(768) {
+      .#{$name} {
+        display: none !important;
+      }
+    }
+  }
+
+  @if $name== "hide-on-tb-l" {
+    @include up(1024) {
+      .#{$name} {
+        display: none !important;
+      }
+    }
+  }
+
+  @if $name== "hide-on-d" {
+    @include up(1180) {
+      .#{$name} {
+        display: none !important;
+      }
+    }
+  }
+}
+
+@mixin imgSize($min, $max) {
+  @include up(768) {
+    width: unquote($min + "%");
+  }
+
+  @include up(1024) {
+    width: $max;
+  }
+}
+
+//Spacing Mixin
+@mixin spacing($lists, $type) {
+  @if $type== "mtp" {
+    @each $item in $lists {
+      .mtp\:#{$item} {
+        margin-top: string.unquote($item + "px");
+      }
+    }
+  } @else if $type== "mb" {
+    @each $item in $lists {
+      .mb\:#{$item} {
+        margin-bottom: string.unquote($item + "px");
+      }
+    }
+  } @else if $type== "pdt" {
+    @each $item in $lists {
+      .pdt\:#{$item} {
+        padding-top: string.unquote($item + "px");
+      }
+    }
+  } @else if $type== "pdb" {
+    @each $item in $lists {
+      .pdb\:#{$item} {
+        padding-top: string.unquote($item + "px");
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+$viewportWidth: 768, 1024, 1180;
+
+@mixin up($value) {
+  @media (min-width: #{$value}px) {
+    @content;
+  }
+}
+
+@mixin down($value) {
+  @media (max-width: #{$value}px) {
+    @content;
+  }
+}
